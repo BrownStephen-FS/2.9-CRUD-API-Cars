@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "../App.css";
 
-function Car() {
-  const [cars, setCars] = useState(null);
+function Dashboard() {
+  const [cars, setStudents] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [err, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [values, setValues] = useState({
     make: "",
     model: "",
@@ -14,9 +14,6 @@ function Car() {
     color: "",
     type: "",
   });
-
-  const { id } = useParams();
-  const navigate = useNavigate();
 
   const API_BASE =
     process.env.NODE_ENV === "development"
@@ -26,7 +23,7 @@ function Car() {
   let ignore = false;
   useEffect(() => {
     if (!ignore) {
-      getCar();
+      getCars();
     }
 
     return () => {
@@ -34,55 +31,33 @@ function Car() {
     };
   }, []);
 
-  const getCar = async () => {
+  const getCars = async () => {
     setLoading(true);
     try {
-      await fetch(`${API_BASE}/cars/${id}`)
+      await fetch(`${API_BASE}/cars`)
         .then((res) => res.json())
         .then((data) => {
-          setValues({
-            make: data.make,
-            model: data.model,
-            year: data.year,
-            color: data.color,
-            type: data.type,
-          });
+          console.log({ data });
+          setStudents(data);
         });
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message || "Unexpected Error");
     } finally {
       setLoading(false);
     }
   };
 
-  const removeCar = async () => {
+  const createCar = async () => {
     try {
-      await fetch(`${API_BASE}/cars/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setCars(data);
-          navigate("/", { replace: true });
-        });
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const updateCar = async () => {
-    try {
-      await fetch(`${API_BASE}/cars/${id}`, {
-        method: "PATCH",
+      await fetch(`${API_BASE}/cars`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(values),
-      }).then((res) => res.json());
-    } catch (err) {
-      setError(err.message);
+      }).then(() => getCars());
+    } catch (error) {
+      setError(error.message || "Unexpected Error");
     } finally {
       setLoading(false);
     }
@@ -90,7 +65,7 @@ function Car() {
 
   const submit = (event) => {
     event.preventDefault();
-    updateCar();
+    createCar();
   };
 
   const change = (event) => {
@@ -104,9 +79,10 @@ function Car() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>{values && `${values.year} ${values.make} ${values.model}`}</h1>
+        <h1>Add a New Car</h1>
         <Link to="/">Home</Link>
       </header>
+
       <section>
         <form onSubmit={(event) => submit(event)}>
           <label>
@@ -155,11 +131,10 @@ function Car() {
             />
           </label>
           <input type="submit" value="Submit" />
-          <button onClick={() => removeCar()}>Remove Car</button>
         </form>
       </section>
     </div>
   );
 }
 
-export default Car;
+export default Dashboard;

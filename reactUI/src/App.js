@@ -1,17 +1,39 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import './App.css';
-import Home from './pages/Home';
-import Car from './pages/Car';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import Car from "./pages/Car";
+import NewCar from "./pages/NewCar";
 
 function App() {
   return (
-    <Router>
-       <Routes>
-         <Route path="/" exact element={<Home />} />
-         <Route path="/students/:id" exact element={<Car />} />
-       </Routes>
-    </Router>
-   );
+    <div>
+      <Router>
+        <Header />
+        <main style={styles.container}>
+          <Nav />
+          <section>
+            <Routes>
+              <Route path="/" exact element={<Home />}></Route>
+              <Route path="/car/:id" exact element={<Car />}></Route>
+              <Route path="/newCar" exact element={<NewCar />}></Route>
+            </Routes>
+          </section>
+          <Footer />
+        </main>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
+
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    height: "auto",
+  },
+};
