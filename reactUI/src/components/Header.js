@@ -3,7 +3,7 @@ import React from "react";
 const Header = () => {
   return (
     <header style={styles.header} id="headerBar">
-        <h1 style={styles.h1}>Memory Lane</h1>
+        <h1 style={styles.h1}>Car Inventory</h1>
     </header>
   );
 };

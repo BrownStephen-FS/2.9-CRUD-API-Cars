@@ -30,7 +30,7 @@ function Home() {
       await fetch(`${API_BASE}/cars`)
         .then((res) => res.json())
         .then((data) => {
-          setCars({ data });
+          setCars( data );
         });
     } catch (err) {
       setError(err.message);
@@ -41,17 +41,15 @@ function Home() {
 
   return (
     <div className="App">
-      <header className="App-header">
         <h1>Inventory of Cars:</h1>
-        <Link to="/newCar">Add</Link>
-      </header>
-      <ul>
+        <Link id="addLink" to="/newCar">Add</Link>
+      <ol>
         {cars?.map((car) => (
           <li key={car._id}>
-            <Link to={`/car/${car._id}`}>{car.name}</Link>
+            <Link className="cars" to={`/cars/${car._id}`}>{`${car.year} ${car.make} ${car.model}`}</Link>
           </li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 }

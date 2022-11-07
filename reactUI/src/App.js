@@ -14,10 +14,10 @@ function App() {
         <Header />
         <main style={styles.container}>
           <Nav />
-          <section>
+          <section style={styles.section}>
             <Routes>
               <Route path="/" exact element={<Home />}></Route>
-              <Route path="/car/:id" exact element={<Car />}></Route>
+              <Route path="/cars/:id" exact element={<Car />}></Route>
               <Route path="/newCar" exact element={<NewCar />}></Route>
             </Routes>
           </section>
@@ -36,4 +36,7 @@ const styles = {
     flexDirection: "row",
     height: "auto",
   },
+  section: {
+    width: "100%"
+  }
 };

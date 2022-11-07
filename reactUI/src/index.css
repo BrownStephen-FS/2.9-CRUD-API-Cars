@@ -11,3 +11,55 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  font-size: 3rem;
+  color: #e11717;
+}
+ol {
+  text-align: left;
+}
+#addLink, .homeLink {
+  text-decoration: none;
+  font-size: 2rem;
+  color: #778899;
+}
+.cars {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #778899;
+}
+.navLink {
+  padding: 1rem;
+    text-align: center;
+    display:block;
+    margin-top: 3rem;
+    font-size: 3rem;
+    color: white
+}
+#addLink:hover, .cars:hover, .homeLink:hover, .navLink:hover {
+  color: #e11717;
+}
+#addSubmit:hover, .carButton:hover {
+  color: white;
+  background-color: black;
+}
+form {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 15rem;
+  text-align: left;
+}
+.inputBox {
+  margin: 1rem;
+}
+#buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#addSubmit {
+  max-width: 5rem;
+  margin-left: 5rem;
+}

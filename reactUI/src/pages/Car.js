@@ -103,15 +103,14 @@ function Car() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>{values && `${values.year} ${values.make} ${values.model}`}</h1>
-        <Link to="/">Home</Link>
-      </header>
+      <h1>{values && `${values.year} ${values.make} ${values.model}`}</h1>
+      <Link className="homeLink" to="/">Home</Link>
       <section>
         <form onSubmit={(event) => submit(event)}>
           <label>
             Make:
             <input
+            className="inputBox"
               type="text"
               name="make"
               value={values.make}
@@ -121,6 +120,7 @@ function Car() {
           <label>
             Model:
             <input
+            className="inputBox"
               type="text"
               name="model"
               value={values.model}
@@ -130,6 +130,7 @@ function Car() {
           <label>
             Year:
             <input
+            className="inputBox"
               type="text"
               name="year"
               value={values.year}
@@ -139,6 +140,7 @@ function Car() {
           <label>
             Color:
             <input
+            className="inputBox"
               type="text"
               name="color"
               value={values.color}
@@ -148,14 +150,17 @@ function Car() {
           <label>
             Type:
             <input
+            className="inputBox"
               type="text"
               name="type"
               value={values.type}
               onChange={change}
             />
           </label>
-          <input type="submit" value="Submit" />
-          <button onClick={() => removeCar()}>Remove Car</button>
+          <div id="buttonContainer">
+            <input className="carButton" type="submit" value="Submit" />
+            <button className="carButton" onClick={() => removeCar()}>Remove Car</button>
+          </div>
         </form>
       </section>
     </div>

@@ -37,7 +37,6 @@ function Dashboard() {
       await fetch(`${API_BASE}/cars`)
         .then((res) => res.json())
         .then((data) => {
-          console.log({ data });
           setStudents(data);
         });
     } catch (error) {
@@ -78,18 +77,18 @@ function Dashboard() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Add a New Car</h1>
-        <Link to="/">Home</Link>
-      </header>
+      <h1>Add a New Car</h1>
+      <Link className="homeLink" to="/">Home</Link>
 
       <section>
         <form onSubmit={(event) => submit(event)}>
           <label>
             Make:
             <input
+              className="inputBox"
               type="text"
               name="make"
+              placeholder="Ford"
               value={values.make}
               onChange={change}
             />
@@ -97,8 +96,10 @@ function Dashboard() {
           <label>
             Model:
             <input
+              className="inputBox"
               type="text"
               name="model"
+              placeholder="F150"
               value={values.model}
               onChange={change}
             />
@@ -106,8 +107,10 @@ function Dashboard() {
           <label>
             Year:
             <input
+              className="inputBox"
               type="text"
               name="year"
+              placeholder="2022"
               value={values.year}
               onChange={change}
             />
@@ -115,8 +118,10 @@ function Dashboard() {
           <label>
             Color:
             <input
+              className="inputBox"
               type="text"
               name="color"
+              placeholder="Red"
               value={values.color}
               onChange={change}
             />
@@ -124,13 +129,15 @@ function Dashboard() {
           <label>
             Type:
             <input
+              className="inputBox"
               type="text"
               name="type"
+              placeholder="Truck"
               value={values.type}
               onChange={change}
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input id="addSubmit" type="submit" value="Submit" />
         </form>
       </section>
     </div>
